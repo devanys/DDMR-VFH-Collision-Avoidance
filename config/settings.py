@@ -1,0 +1,54 @@
+"""
+Configuration Settings for Robot Navigation System
+Semua parameter sistem ada di sini - mudah untuk tuning!
+"""
+
+class Config:
+    KINECT_FX = 525.0
+    KINECT_FY = 525.0
+    KINECT_CX = 319.5
+    KINECT_CY = 239.5
+    
+    VFH_THRESHOLD_DISTANCE = 1.0  
+    VFH_NUM_SECTORS = 5           
+    VFH_TURN_DURATION = 0.2       
+    VFH_FORWARD_DURATION = 0.4    
+    
+    VFH_SECTOR_LABELS = ["Kiri", "Kiri-Depan", "Tengah", "Kanan-Depan", "Kanan"]
+    
+    ARUCO_DICT_TYPE = 'DICT_5X5_1000'
+    ARUCO_FRAME_WIDTH = 640
+    ARUCO_FRAME_HEIGHT = 480
+    
+    ARUCO_LEFT_BOUNDARY = 0.33   
+    ARUCO_RIGHT_BOUNDARY = 0.67  
+    
+    ARUCO_APPROACH_DISTANCE = 0.5  
+    ARUCO_MIN_MARKER_SIZE = 50     
+    
+    ARDUINO_PORT = 'COM5'
+    ARDUINO_BAUDRATE = 9600
+    ARDUINO_TIMEOUT = 1
+    
+    PWM_LEFT = 59
+    PWM_RIGHT = 255
+    
+    DISPLAY_WIDTH = 1280
+    DISPLAY_HEIGHT = 720
+    TARGET_FPS = 30
+    
+    COLOR_OBSTACLE = (0, 0, 255)      
+    COLOR_CLEAR = (0, 255, 0)         
+    COLOR_ARUCO = (255, 0, 255)       
+    COLOR_TEXT = (255, 255, 255)      
+    COLOR_ZONE_LINE = (0, 255, 255)   
+    
+    SEARCH_MODE_BEHAVIOR = "STOP"  
+    
+    PRIORITY_OBSTACLE_AVOIDANCE = 10
+    PRIORITY_TARGET_TRACKING = 5
+    
+    DEBUG_MODE = True
+    SHOW_FPS = True
+    ENABLE_LOGGING = True
+    LOG_FOLDER = "logs"
