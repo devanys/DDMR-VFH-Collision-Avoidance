@@ -1,5 +1,9 @@
 # 🤖 DDMR-VFH-Collision-Avoidance
 
+
+https://github.com/user-attachments/assets/d18cc994-d7cc-46e8-96df-8fb7225a1beb
+
+
 Sistem navigasi robot autonomous menggunakan **Vector Field Histogram (VFH)** untuk obstacle avoidance dan **ArUco marker tracking** untuk goal-seeking navigation.
 
 ## 📋 Fitur
