@@ -1,8 +1,3 @@
-"""
-Kinect VFH (Vector Field Histogram) Module
-Handle obstacle detection dan navigation menggunakan Kinect depth sensor
-"""
-
 import cv2
 import numpy as np
 from openni import openni2
@@ -12,15 +7,7 @@ import time
 class KinectVFH:
     def __init__(self, threshold_distance=1.0, num_sectors=5, 
                  turn_duration=0.2, forward_duration=0.4):
-        """
-        Initialize Kinect VFH system
-        
-        Args:
-            threshold_distance (float): Jarak threshold untuk deteksi obstacle (meter)
-            num_sectors (int): Jumlah sector untuk VFH analysis
-            turn_duration (float): Durasi belok (seconds)
-            forward_duration (float): Durasi maju (seconds)
-        """
+                     
         self.fx = 525.0
         self.fy = 525.0
         self.cx = 319.5
@@ -61,14 +48,7 @@ class KinectVFH:
             raise
     
     def get_frames(self):
-        """
-        Get RGB and Depth frames dari Kinect
-        
-        Returns:
-            tuple: (rgb_frame, depth_frame)
-                - rgb_frame: numpy array (480, 640, 3)
-                - depth_frame: numpy array (480, 640) dalam meter
-        """
+
         try:
             color_frame = self.color_stream.read_frame()
             depth_frame = self.depth_stream.read_frame()
@@ -87,15 +67,7 @@ class KinectVFH:
             return None, None
     
     def analyze_sectors(self, depth_frame):
-        """
-        Analyze VFH sectors dari depth data
-        
-        Args:
-            depth_frame: Depth image (numpy array) dalam meter
-        
-        Returns:
-            dict: Sector status {"Kiri": "Low", "Tengah": "High", ...}
-        """
+
         if depth_frame is None:
             return {label: "Low" for label in self.sector_labels}
         
@@ -131,15 +103,6 @@ class KinectVFH:
         return sector_status
     
     def calculate_histogram(self, depth_frame):
-        """
-        Calculate polar histogram untuk VFH
-        
-        Args:
-            depth_frame: Depth image
-        
-        Returns:
-            numpy array: Histogram values (length = num_sectors)
-        """
         histogram = np.zeros(self.num_sectors)
         
         if depth_frame is None:
@@ -174,27 +137,9 @@ class KinectVFH:
         return histogram
     
     def is_all_clear(self, sector_status):
-        """
-        Check apakah semua sector clear (no obstacle)
-        
-        Args:
-            sector_status (dict): Sector status dari analyze_sectors()
-        
-        Returns:
-            bool: True jika semua sector "Low"
-        """
         return all(status == "Low" for status in sector_status.values())
     
     def get_vfh_command(self, sector_status):
-        """
-        Generate navigation command dari VFH analysis (time-based)
-        
-        Args:
-            sector_status (dict): Sector status
-        
-        Returns:
-            str: Command - "FORWARD", "LEFT", "RIGHT"
-        """
         now = time.time()
         elapsed = now - self.command_start_time
         
@@ -234,18 +179,7 @@ class KinectVFH:
     
     def get_point_cloud_canvas(self, rgb_frame, depth_frame, 
                                display_width=1280, display_height=720):
-        """
-        Generate point cloud visualization canvas
-        
-        Args:
-            rgb_frame: RGB image
-            depth_frame: Depth image
-            display_width: Canvas width
-            display_height: Canvas height
-        
-        Returns:
-            numpy array: Canvas untuk display
-        """
+
         if rgb_frame is None or depth_frame is None:
             return np.zeros((display_height, display_width, 3), dtype=np.uint8)
         
