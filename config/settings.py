@@ -1,8 +1,3 @@
-"""
-Configuration Settings for Robot Navigation System
-Semua parameter sistem ada di sini - mudah untuk tuning!
-"""
-
 class Config:
     KINECT_FX = 525.0
     KINECT_FY = 525.0
