@@ -4,16 +4,16 @@
 https://github.com/user-attachments/assets/d18cc994-d7cc-46e8-96df-8fb7225a1beb
 
 
-Sistem navigasi robot autonomous menggunakan **Vector Field Histogram (VFH)** untuk obstacle avoidance dan **ArUco marker tracking** untuk goal-seeking navigation.
+The autonomous robot navigation system uses **Vector Field Histogram (VFH)** for obstacle avoidance and **ArUco marker tracking** for goal-seeking navigation.
 
-## 📋 Fitur
+## 📋 Features
 
-- ✅ **VFH Obstacle Avoidance**: Deteksi dan hindari obstacle secara real-time
-- ✅ **ArUco Marker Tracking**: Track dan approach ArUco marker sebagai target
+- ✅ **VFH Obstacle Avoidance**: Detect and avoid obstacles in real time
+- ✅ **ArUco Marker Tracking**: Track and approach ArUco markers as targets
 - ✅ **Hybrid Decision Logic**: Smart priority-based decision making
-- ✅ **Modular Architecture**: Clean, maintainable, dan extensible code
+- ✅ **Modular Architecture**: Clean, maintainable, and extensible code
 - ✅ **Real-time Visualization**: Point cloud + ArUco overlay + status display
-- ✅ **Arduino Integration**: Serial communication untuk motor control
+- ✅ **Arduino Integration**: Serial communication for motor control
 
 ## 🏗️ Arsitektur Sistem
 
@@ -32,23 +32,23 @@ Sistem navigasi robot autonomous menggunakan **Vector Field Histogram (VFH)** un
 └────────┘   └──────────┘ └────────┘ └────────┘
 ```
 
-## 🎯 Mode Operasi
+## 🎯 Operation Mode
 
 ### 1. VFH_ACTIVE (Priority 1)
-- **Trigger**: Obstacle terdeteksi di salah satu sector
-- **Behavior**: Hindari obstacle dengan turn left/right
-- **Priority**: Tertinggi (Safety First!)
+- **Trigger**: Obstacle detected in one of the sectors
+- **Behavior**: Avoid the obstacle by turning left/right
+- **Priority**: Highest (Safety First!)
 
 ### 2. ARUCO_TRACKING (Priority 2)
 - **Trigger**: Path clear + ArUco marker detected
 - **Behavior**: Follow marker (left/center/right zone)
-- **Priority**: Sedang (Goal Seeking)
+- **Priority**: Medium (Goal Seeking)
 
 ### 3. SEARCH (Priority 3)
 - **Trigger**: Path clear + No ArUco detected
-- **Behavior**: Stop atau rotate (configurable)
-- **Priority**: Terendah (Default State)
-
+- **Behavior**: Stop or rotate (configurable)
+- **Priority**: Lowest (Default State)
+- 
 ## 📦 Instalasi
 
 ### 1. Requirements
@@ -74,15 +74,10 @@ pip install -r requirements.txt
 
 ### 3. OpenNI2 Setup
 
-Download dan install OpenNI2 SDK dari:
+Download and install the OpenNI2 SDK from:
 - Windows: https://structure.io/openni
 - Linux: `sudo apt-get install libopenni2-dev`
 
-### 4. Upload Arduino Code
-
-Upload `arduino_motor_control.ino` ke Arduino board.
-
-## 🚀 Cara Menjalankan
 
 ### Test Individual Modules
 
@@ -132,7 +127,7 @@ ARUCO_DICT_TYPE = 'DICT_5X5_1000'
 ARUCO_APPROACH_DISTANCE = 0.5  # meter
 
 # Arduino Settings
-ARDUINO_PORT = 'COM5'  # Ganti sesuai port Arduino Anda
+ARDUINO_PORT = 'COM5' 
 ```
 
 ## 📊 Decision Logic
@@ -155,26 +150,26 @@ ELSE:
     COMMAND = STOP
 ```
 
-## 🧪 Testing Scenarios
+## 🧪 Test Scenarios
 
 ### Scenario 1: VFH Obstacle Avoidance
-1. Run system tanpa ArUco marker
-2. Letakkan obstacle di depan sensor
-3. Verify: Robot belok kiri/kanan hindari obstacle
+1. Run the system without ArUco markers
+2. Place an obstacle on the front sensor
+3. Verify: The robot turns left/right to avoid obstacles
 
 ### Scenario 2: ArUco Tracking
-1. Pastikan path clear (no obstacle)
-2. Show ArUco marker ke camera
-3. Verify: Robot turn untuk face marker
-4. Verify: Robot forward saat marker di center
+1. Ensure the path is clear (no obstacles)
+2. Show the ArUco marker to the camera
+3. Verify: The robot turns to face the marker
+4. Verify: The robot advances when the marker is centered
 
 ### Scenario 3: Hybrid Navigation
-1. Show ArUco marker + place obstacle
-2. Verify: VFH takes priority (hindari obstacle dulu)
-3. Remove obstacle
-4. Verify: Resume ArUco tracking
+1. Show the ArUco marker + place an obstacle
+2. Verify: VFH takes priority (avoid obstacles first)
+3. Remove the obstacle
+4. Verify: Continue ArUco tracking
 
-## 📁 Struktur File
+## 📁 File Structure
 
 ```
 robot_navigation_mvc/
@@ -204,29 +199,29 @@ robot_navigation_mvc/
 
 ## 🐛 Troubleshooting
 
-### Kinect tidak terdeteksi
+### Kinect not detected
 ```bash
 # Check OpenNI2 installation
 # Windows: Check Device Manager
 # Linux: lsusb | grep Kinect
 ```
 
-### Arduino tidak connect
+### Arduino not connected
 ```bash
-# Check COM port di Device Manager
+# Check COM port in Device Manager
 # Edit config/settings.py: ARDUINO_PORT = 'COM_YOUR_PORT'
 # Test: python tests/test_arduino_comm.py
 ```
 
-### ArUco tidak terdeteksi
-- Pastikan lighting cukup
-- Print marker minimal 10cm x 10cm
-- Gunakan high contrast print (hitam-putih)
+### ArUco not detected
+- Ensure sufficient lighting
+- Print markers at least 10cm x 10cm
+- Use high-contrast print (black and white)
 - Check dictionary type: DICT_5X5_1000
 
-### VFH selalu detect obstacle
-- Tuning threshold: `VFH_THRESHOLD_DISTANCE` di settings.py
-- Check Kinect depth data valid (tidak all zeros)
+### VFH always detects obstacles
+- Tune threshold: `VFH_THRESHOLD_DISTANCE` in settings.py
+- Check Kinect depth data is valid (not all zeros)
 
 ## 📝 Logs
 
