@@ -225,7 +225,7 @@ robot_navigation_mvc/
 
 ## 📝 Logs
 
-System log tersimpan di folder `logs/`:
+System save in folder `logs/`:
 ```
 logs/robot_nav_YYYYMMDD_HHMMSS.log
 ```
